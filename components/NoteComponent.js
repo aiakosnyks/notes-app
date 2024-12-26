@@ -7,7 +7,7 @@ const NoteComponent = () => {
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
         <Icon name="home" size={20} color="#fff" />
-        <Text style={styles.buttonText}>Ana Sayfa</Text>
+        <Text style={styles.buttonText}>Ana Sayfa2</Text>
       </TouchableOpacity>
     </View>
   );
