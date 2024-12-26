@@ -4,33 +4,35 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 const NoteComponent = () => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-        <Icon name="plus" size={20} color="#5c5c5c" />
+    <View style={styles.mainContainer}>
+      <TouchableOpacity style={styles.addButton}>
+      <Icon name="plus" size={27} color="#000" fontWeight={50} opacity={0.7}/>
       </TouchableOpacity>
+      <View style={styles.container}>
+      </View>
     </View>
+
+
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+mainContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  button: {
+    paddingTop: 20,
+    },
+    addButton: {
     flexDirection: 'row',
-    backgroundColor: '#007BFF',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     alignItems: 'center',
-  },
-  icon: {
-    size: 20,
-    color: 'black',
-    opacity: 0.7,
-    fontWeight: 300,
+    width: 60,
+    height: 60,
+    backgroundColor: '#78D199',
+    opacity: 0.70,
   },
   buttonText: {
     color: '#fff',
