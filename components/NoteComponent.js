@@ -6,8 +6,7 @@ const NoteComponent = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
-        <Icon name="home" size={20} color="#fff" />
-        <Text style={styles.buttonText}>Ana Sayfa2</Text>
+        <Icon name="plus" size={20} color="#5c5c5c" />
       </TouchableOpacity>
     </View>
   );
@@ -27,6 +26,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
   },
+  icon: {
+    size: 20,
+    color: 'black',
+    opacity: 0.7,
+    fontWeight: 300,
+  },
   buttonText: {
     color: '#fff',
     marginLeft: 10,
@@ -35,5 +40,3 @@ const styles = StyleSheet.create({
 });
 
 export default NoteComponent;
-
-
