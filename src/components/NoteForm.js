@@ -1,27 +1,20 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const NoteComponent = () => {
+
+const NoteForm = () => {
   return (
     <View style={styles.noteContainer}>
       <View style={styles.noteHeader}>
         <Text style={styles.noteTitleText}>note.title</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.noteEditButton}>
-            <Icon name="edit" size={20} color="#000" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.noteDeleteButton}>
-            <Icon name="remove" size={20} color="#000" />
-          </TouchableOpacity>
-        </View>
       </View>
-      <Text style={styles.emailText}>note.email</Text>
-      <Text style={styles.descriptionText}>note.description</Text>
+      <TextInput style={styles.emailText}>note.email</TextInput>
+      <TextInput style={styles.descriptionText}>note.description</TextInput>
       <View style={{ alignItems: 'center', marginTop: 10 }}>
-      <TouchableOpacity style={styles.noteDetailButton}>
-        <Icon name="bars" size={18} color="#000" />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.noteSaveButton}>
+            <Icon name="floppy-disc" size={18} color="#000" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -75,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: '#78ACD1',
   },
-  noteDetailButton: {
+  noteSaveButton: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 100,
@@ -106,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NoteComponent;
+export default NoteForm;
