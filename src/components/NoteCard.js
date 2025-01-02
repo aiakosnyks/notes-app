@@ -8,7 +8,7 @@ const NoteCard = ({navigation}) => {
       <View style={styles.noteHeader}>
         <Text style={styles.noteTitleText}>note.title</Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={()=> navigation.navigate('Edit')}  style={styles.noteEditButton}>
+          <TouchableOpacity onPress={()=> navigation.navigate('Counter')}  style={styles.noteEditButton}>
             <Icon name="edit" size={20} color="#000" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.noteDeleteButton}>
