@@ -13,7 +13,8 @@ import NoteCard from '../components/NoteCard';
 const ListNotesScreen = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity  style={styles.addButton}>
+      <TouchableOpacity onPress={()=> navigation.navigate('Edit')}
+      style={styles.addButton}> 
       <Icon name="plus" size={27} color="#000" fontWeight={50} opacity={0.6}/>
       </TouchableOpacity>
       <NoteCard navigation={navigation} />

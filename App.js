@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListNotesScreen from './src/screens/ListNotesScreen';
 import EditNoteScreen from './src/screens/EditNoteScreen';
+import AddNoteScreen from './src/screens/AddNoteScreen';
 import CounterScreen from './src/screens/CounterScreen';
 import { store } from './src/redux/store';
 import { Provider } from 'react-redux';
@@ -26,6 +27,10 @@ const App = () => {
           <Stack.Screen 
           name="Counter" 
           component={CounterScreen} 
+          />
+          <Stack.Screen
+          name="Add"
+          component={AddNoteScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

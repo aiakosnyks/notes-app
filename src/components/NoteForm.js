@@ -1,74 +1,71 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { addNote } from '../redux/noteSlice';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const NoteForm = () => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    if (!title || !description) {
+      Alert.alert('Please fill out both fields.');
+      return;
+    }
+
+    const content = { title, description };
+    dispatch(addNote(content));
+    
+    console.log('Note added:', { title, description });
+    Alert.alert('Note Added', `Title: ${title}\nDescription: ${description}`);
+    setTitle('');
+    setDescription('');
+  };
+
   return (
-    <View style={styles.noteContainer}>
-      <View style={styles.noteHeader}>
-        <Text style={styles.noteTitleText}>note.title</Text>
-      </View>
-      <TextInput style={styles.emailText}>note.email</TextInput>
-      <TextInput style={styles.descriptionText}>note.description</TextInput>
-      <View style={{ alignItems: 'center', marginTop: 10 }}>
-        <TouchableOpacity style={styles.noteSaveButton}>
-            <Icon name="floppy-disc" size={18} color="#000" />
+    <View style={styles.container}>
+      <Text style={styles.heading}>Add a New Note</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Title"
+        value={title}
+        onChangeText={setTitle}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Description"
+        value={description}
+        onChangeText={setDescription}
+        multiline
+        numberOfLines={4}
+      />
+        <TouchableOpacity onPress={handleSubmit} style={styles.noteSubmitButton}>
+          <Icon name="bars" size={18} color="#000" />
         </TouchableOpacity>
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  noteContainer: {
-    padding: 10,
-    margin: 20,
-    borderRadius: 15,
-    backgroundColor: '#D3F17F',
-    opacity: 0.6,
-    height: 'auto',
-    width: 350,
-    marginBottom: 20,
+  container: {
+    padding: 16,
   },
-  noteHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 13,
-  },
-  noteTitleText: {
-    backgroundColor: '#B678D1',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 15,
-    color: '#000',
-    fontSize: 16,
+  heading: {
+    fontSize: 18,
     fontWeight: 'bold',
-    opacity: 0.9,
+    marginBottom: 12,
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+    borderRadius: 4,
+    marginBottom: 12,
   },
-  noteEditButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 35,
-    height: 35,
-    borderRadius: 15,
-    backgroundColor: '#78ACD1',
-  },
-  noteDeleteButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 35,
-    height: 35,
-    borderRadius: 15,
-    backgroundColor: '#78ACD1',
-  },
-  noteSaveButton: {
+  noteSubmitButton: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 100,
@@ -76,26 +73,6 @@ const styles = StyleSheet.create({
     opacity: 0.85,
     height: 30,
     borderRadius: 15,
-  },
-  emailText: {
-    backgroundColor: '#B678D1',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 15,
-    color: '#000',
-    fontSize: 14,
-    marginBottom: 8,
-    opacity: 0.8,
-  },
-  descriptionText: {
-    backgroundColor: '#B678D1',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 15,
-    color: '#000',
-    fontSize: 14,
-    marginBottom: 10,
-    opacity: 0.75,
   },
 });
 
