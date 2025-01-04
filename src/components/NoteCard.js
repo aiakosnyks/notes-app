@@ -1,27 +1,40 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { Svg, Path } from 'react-native-svg';
+import { removeNote } from '../redux/noteSlice';
 
-const NoteCard = ({note, navigation}) => {
-  console.log('notes:',note);
+const NoteCard = ({ note, navigation, setEditing }) => {
+
   return (
     <View style={styles.noteContainer}>
       <View style={styles.noteHeader}>
         <Text style={styles.noteTitleText}>{note.content.title}</Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={()=> navigation.navigate('Edit')}  style={styles.noteEditButton}>
-            <Icon name="edit" size={20} color="#000" />
+          {/* Edit Button */}
+          <TouchableOpacity onPress={ () => navigation.navigate('Edit', { note: note }) } style={styles.noteEditButton}>
+            <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
+              <Path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm14.71-9.04c.39-.39.39-1.02 0-1.41l-2.54-2.54c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+            </Svg>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.noteDeleteButton}>
-            <Icon name="remove" size={20} color="#000" />
+
+          {/* Delete Button */}
+          <TouchableOpacity onPress={() => dispatch(removeNote(note.content.id))} style={styles.noteDeleteButton}>
+            <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
+              <Path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm3-9h2v7H9v-7zm4 0h2v7h-2v-7zm5-4h-3.5l-1-1h-5l-1 1H5v2h14V6z" />
+            </Svg>
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={styles.emailText}>{note.email}</Text>
-      <Text style={styles.descriptionText}>{note.description}</Text>
+
+      <Text style={styles.emailText}>{note.content.email}</Text>
+      <Text style={styles.descriptionText}>{note.content.description}</Text>
+
+      {/* Detail Button */}
       <View style={{ alignItems: 'center', marginTop: 10 }}>
         <TouchableOpacity style={styles.noteDetailButton}>
-          <Icon name="bars" size={18} color="#000" />
+          <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
+            <Path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+          </Svg>
         </TouchableOpacity>
       </View>
     </View>
@@ -63,17 +76,17 @@ const styles = StyleSheet.create({
   noteEditButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 35,
-    height: 35,
-    borderRadius: 15,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: '#78ACD1',
   },
   noteDeleteButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 35,
-    height: 35,
-    borderRadius: 15,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: '#78ACD1',
   },
   noteDetailButton: {
@@ -82,8 +95,8 @@ const styles = StyleSheet.create({
     width: 100,
     backgroundColor: '#D19C78',
     opacity: 0.85,
-    height: 30,
-    borderRadius: 15,
+    height: 40,
+    borderRadius: 20,
   },
   emailText: {
     backgroundColor: '#B678D1',

@@ -1,50 +1,60 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { addNote } from '../redux/noteSlice';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { addNote, editNote, clearSelectedNote } from '../redux/noteSlice';
+
+const NoteForm = ({ note }) => {
+  //console.log('note form entry: ', note);
+  const [title, setTitle] = useState(note?.content.title || '');
+  const [description, setDescription] = useState(note?.content.description || '');
+  const [email, setEmail] = useState(note?.content.email || '');
 
 
-const NoteForm = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    if (!title || !description) {
-      Alert.alert('Please fill out both fields.');
+    if (!title || !description || !email) {
+      Alert.alert('Please fill out all fields.');
       return;
     }
 
-    const content = { title, description };
-    dispatch(addNote(content));
-    
-    console.log('Note added:', { title, description });
-    Alert.alert('Note Added', `Title: ${title}\nDescription: ${description}`);
-    setTitle('');
-    setDescription('');
+    const content = { 'title':title, 'description': description, 'email':email };
+    const editContent = {'id': note?.id, 'content': content};
+    if (note) {
+      dispatch(editNote( editContent));
+      Alert.alert('Note Updated');
+    } else {
+      console.log('added new content: ', content);
+      dispatch(addNote(content));
+      Alert.alert('Note Added');
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Add a New Note</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        defaultValue={email}
+        onChangeText={setEmail}
+      />
       <TextInput
         style={styles.input}
         placeholder="Title"
-        value={title}
+        defaultValue={title}
         onChangeText={setTitle}
       />
       <TextInput
         style={styles.input}
         placeholder="Description"
-        value={description}
+        defaultValue={description}
         onChangeText={setDescription}
         multiline
         numberOfLines={4}
       />
-        <TouchableOpacity onPress={handleSubmit} style={styles.noteSubmitButton}>
-          <Icon name="bars" size={18} color="#000" />
-        </TouchableOpacity>
+      <TouchableOpacity onPress={handleSubmit} style={styles.noteSubmitButton}>
+        <Text>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -52,11 +62,6 @@ const NoteForm = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-  },
-  heading: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
   },
   input: {
     borderWidth: 1,
@@ -68,7 +73,6 @@ const styles = StyleSheet.create({
   noteSubmitButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 100,
     backgroundColor: '#D19C78',
     opacity: 0.85,
     height: 30,
