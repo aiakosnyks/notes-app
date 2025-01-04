@@ -2,8 +2,10 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { Svg, Path } from 'react-native-svg';
 import { removeNote } from '../redux/noteSlice';
+import { useDispatch } from 'react-redux';
 
 const NoteCard = ({ note, navigation, setEditing }) => {
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.noteContainer}>
@@ -18,7 +20,7 @@ const NoteCard = ({ note, navigation, setEditing }) => {
           </TouchableOpacity>
 
           {/* Delete Button */}
-          <TouchableOpacity onPress={() => dispatch(removeNote(note.content.id))} style={styles.noteDeleteButton}>
+          <TouchableOpacity onPress={() => dispatch(removeNote(note.id))} style={styles.noteDeleteButton}>
             <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
               <Path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm3-9h2v7H9v-7zm4 0h2v7h-2v-7zm5-4h-3.5l-1-1h-5l-1 1H5v2h14V6z" />
             </Svg>
