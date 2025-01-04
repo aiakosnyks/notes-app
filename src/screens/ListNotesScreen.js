@@ -5,19 +5,31 @@
  * @format
  */
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import NoteCard from '../components/NoteCard';
+import { selectAllNotes, selectNoteById } from '../redux/noteSlice';
+import { useSelector } from 'react-redux';
 
 
-const ListNotesScreen = ({navigation}) => {
+const ListNotesScreen = ({note, navigation}) => {
+  // const users = useAppSelector(selectAllNotes);
+  const notes = useSelector((state) => state.notes); // 'useAppSelector' yerine 'useSelector'
+
+
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity onPress={()=> navigation.navigate('Edit')}
       style={styles.addButton}> 
       <Icon name="plus" size={27} color="#000" fontWeight={50} opacity={0.6}/>
       </TouchableOpacity>
-      <NoteCard navigation={navigation} />
+      <FlatList
+        data={notes}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <NoteCard note={item} navigation={navigation} />}
+      />
+
+      {/* <NoteCard navigation={navigation} /> */}
     </View>
   );
 };

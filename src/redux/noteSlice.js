@@ -19,8 +19,18 @@ export const noteSlice = createSlice({
         };
       },
     },
+    editNote: {
+        reducer: (state, action) => {
+            state.values
+        }
+    }
   },
 });
 
-export const { addNote, prepare } = noteSlice.actions;
+export const { addNote, prepare, editNote } = noteSlice.actions;
 export default noteSlice.reducer;
+
+export const selectAllNotes = (state) => state.notes;
+
+export const selectNoteById = (state, noteId) =>
+  state.notes.find(note => note.id === noteId);

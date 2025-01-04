@@ -1,12 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const NoteCard = ({navigation}) => {
+const NoteCard = ({note, navigation}) => {
+  console.log('notes:',note);
   return (
     <View style={styles.noteContainer}>
       <View style={styles.noteHeader}>
-        <Text style={styles.noteTitleText}>note.title</Text>
+        <Text style={styles.noteTitleText}>{note.content.title}</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={()=> navigation.navigate('Edit')}  style={styles.noteEditButton}>
             <Icon name="edit" size={20} color="#000" />
@@ -16,8 +17,8 @@ const NoteCard = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={styles.emailText}>note.email</Text>
-      <Text style={styles.descriptionText}>note.description</Text>
+      <Text style={styles.emailText}>{note.email}</Text>
+      <Text style={styles.descriptionText}>{note.description}</Text>
       <View style={{ alignItems: 'center', marginTop: 10 }}>
         <TouchableOpacity style={styles.noteDetailButton}>
           <Icon name="bars" size={18} color="#000" />
