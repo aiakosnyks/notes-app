@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import reducer from "./counterSlice";
 
 const initialState = [];
 
@@ -9,14 +8,14 @@ export const noteSlice = createSlice({
   reducers: {
     addNote: {
       reducer: (state, action) => {
-        console.log('action add note: ', action)
-        state.push(action.payload); // Yeni notu state'e ekler
+        console.log("action add note: ", action);
+        state.push(action.payload); // Add the new note to the state
       },
       prepare: (content) => {
         return {
           payload: {
-            id: nanoid(), // Unique ID oluştur
-            content: content, // content nesnesini ekle
+            id: nanoid(), // Generate a unique ID
+            content: content, // Add the content object, including image
           },
         };
       },
@@ -26,28 +25,30 @@ export const noteSlice = createSlice({
         console.log("edit slice", state);
         const { id, content } = action.payload;
         const note = state.find((n) => n.id === id); // Find the note by id
-        console.log('found note: ',note);
+        console.log("found note: ", note);
         if (note) {
-          console.log('edit slice payload content: ',content.title);
+          console.log("edit slice payload content: ", content.title);
 
-          note.content.title = content.title || note.content.title ;
+          note.content.title = content.title || note.content.title;
           note.content.description = content.description || note.content.description;
           note.content.email = content.email || note.content.email;
+          note.content.image = content.image || note.content.image; // Update the image
         }
-      }
+      },
     },
     removeNote: {
       reducer: (state, action) => {
-      const id = action.payload;
-      return state.filter((n) => n.id !== id); // Belirtilen id'yi hariç tutan yeni bir state döner
-      },    
+        const id = action.payload;
+        return state.filter((n) => n.id !== id); // Return a new state excluding the note with the given id
+      },
     },
-  }
+  },
 });
 
 export const { addNote, editNote, removeNote } = noteSlice.actions;
 export default noteSlice.reducer;
 
+// Selectors
 export const selectAllNotes = (state) => state.notes;
 
 export const selectNoteById = (state, noteId) =>

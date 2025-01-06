@@ -39,12 +39,12 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TakeNotes/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = TakeNotes/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-TakeNotes-TakeNotesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TakeNotes-TakeNotesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36B71548CDC2AA103FA76365 /* Pods-TakeNotes-TakeNotesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes-TakeNotesTests.release.xcconfig"; path = "Target Support Files/Pods-TakeNotes-TakeNotesTests/Pods-TakeNotes-TakeNotesTests.release.xcconfig"; sourceTree = "<group>"; };
+		50972F9B20C94B0850BE2E8E /* Pods-TakeNotes-TakeNotesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes-TakeNotesTests.debug.xcconfig"; path = "Target Support Files/Pods-TakeNotes-TakeNotesTests/Pods-TakeNotes-TakeNotesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5206B41A6AC37608650E5459 /* Pods-TakeNotes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes.debug.xcconfig"; path = "Target Support Files/Pods-TakeNotes/Pods-TakeNotes.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-TakeNotes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TakeNotes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F11F5186CCC4B9498FBEB1C /* Pods-TakeNotes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes.debug.xcconfig"; path = "Target Support Files/Pods-TakeNotes/Pods-TakeNotes.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TakeNotes/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9193C9F0869B629CEBFF1E7A /* Pods-TakeNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes.release.xcconfig"; path = "Target Support Files/Pods-TakeNotes/Pods-TakeNotes.release.xcconfig"; sourceTree = "<group>"; };
-		D456B167ABBC74A619395D4E /* Pods-TakeNotes-TakeNotesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes-TakeNotesTests.debug.xcconfig"; path = "Target Support Files/Pods-TakeNotes-TakeNotesTests/Pods-TakeNotes-TakeNotesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D684741D9C65576D2F3F7AFD /* Pods-TakeNotes-TakeNotesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes-TakeNotesTests.release.xcconfig"; path = "Target Support Files/Pods-TakeNotes-TakeNotesTests/Pods-TakeNotes-TakeNotesTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E153D356CAF3569EE225EAA /* Pods-TakeNotes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeNotes.release.xcconfig"; path = "Target Support Files/Pods-TakeNotes/Pods-TakeNotes.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -109,6 +109,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		42FDE936A3BF05748B213053 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5206B41A6AC37608650E5459 /* Pods-TakeNotes.debug.xcconfig */,
+				9E153D356CAF3569EE225EAA /* Pods-TakeNotes.release.xcconfig */,
+				50972F9B20C94B0850BE2E8E /* Pods-TakeNotes-TakeNotesTests.debug.xcconfig */,
+				36B71548CDC2AA103FA76365 /* Pods-TakeNotes-TakeNotesTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,7 +136,7 @@
 				00E356EF1AD99517003FC87E /* TakeNotesTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				BE51C8A1239DF9607CE7CD60 /* Pods */,
+				42FDE936A3BF05748B213053 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -138,18 +150,6 @@
 				00E356EE1AD99517003FC87E /* TakeNotesTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BE51C8A1239DF9607CE7CD60 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7F11F5186CCC4B9498FBEB1C /* Pods-TakeNotes.debug.xcconfig */,
-				9193C9F0869B629CEBFF1E7A /* Pods-TakeNotes.release.xcconfig */,
-				D456B167ABBC74A619395D4E /* Pods-TakeNotes-TakeNotesTests.debug.xcconfig */,
-				D684741D9C65576D2F3F7AFD /* Pods-TakeNotes-TakeNotesTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,7 +415,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D456B167ABBC74A619395D4E /* Pods-TakeNotes-TakeNotesTests.debug.xcconfig */;
+			baseConfigurationReference = 50972F9B20C94B0850BE2E8E /* Pods-TakeNotes-TakeNotesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -442,7 +442,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D684741D9C65576D2F3F7AFD /* Pods-TakeNotes-TakeNotesTests.release.xcconfig */;
+			baseConfigurationReference = 36B71548CDC2AA103FA76365 /* Pods-TakeNotes-TakeNotesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -466,7 +466,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F11F5186CCC4B9498FBEB1C /* Pods-TakeNotes.debug.xcconfig */;
+			baseConfigurationReference = 5206B41A6AC37608650E5459 /* Pods-TakeNotes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -494,7 +494,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9193C9F0869B629CEBFF1E7A /* Pods-TakeNotes.release.xcconfig */;
+			baseConfigurationReference = 9E153D356CAF3569EE225EAA /* Pods-TakeNotes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

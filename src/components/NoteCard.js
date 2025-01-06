@@ -14,16 +14,12 @@ const NoteCard = ({ note, navigation, setEditing }) => {
         <View style={styles.buttonContainer}>
           {/* Edit Button */}
           <TouchableOpacity onPress={ () => navigation.navigate('Edit', { note: note }) } style={styles.noteEditButton}>
-            <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
-              <Path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm14.71-9.04c.39-.39.39-1.02 0-1.41l-2.54-2.54c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-            </Svg>
+          <Text>Edit</Text>
           </TouchableOpacity>
 
           {/* Delete Button */}
           <TouchableOpacity onPress={() => dispatch(removeNote(note.id))} style={styles.noteDeleteButton}>
-            <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
-              <Path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm3-9h2v7H9v-7zm4 0h2v7h-2v-7zm5-4h-3.5l-1-1h-5l-1 1H5v2h14V6z" />
-            </Svg>
+          <Text>Erase</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -34,9 +30,7 @@ const NoteCard = ({ note, navigation, setEditing }) => {
       {/* Detail Button */}
       <View style={{ alignItems: 'center', marginTop: 10 }}>
         <TouchableOpacity style={styles.noteDetailButton}>
-          <Svg viewBox="0 0 24 24" width={24} height={24} fill="#fff">
-            <Path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
-          </Svg>
+        <Text>Details</Text>
         </TouchableOpacity>
       </View>
     </View>

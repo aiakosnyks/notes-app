@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import NoteForm from "../components/NoteForm";
 
 const AddNoteScreen = () => {
@@ -9,7 +9,6 @@ const AddNoteScreen = () => {
       </View>
     );
   };  
-
 
 const styles = StyleSheet.create({
         mainContainer: {

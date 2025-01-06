@@ -1,30 +1,58 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Alert, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Alert, Text, Button, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { addNote, editNote, clearSelectedNote } from '../redux/noteSlice';
+import { addNote, editNote } from '../redux/noteSlice';
+import useEmailValidation from '../hooks/useEmailValidation'; // Import the custom hook
+import { launchImageLibrary as _launchImageLibrary } from 'react-native-image-picker';
+let launchImageLibrary = _launchImageLibrary;
 
 const NoteForm = ({ note }) => {
-  //console.log('note form entry: ', note);
+  const { email, setEmail, isValid } = useEmailValidation(note?.content?.email || '');
   const [title, setTitle] = useState(note?.content.title || '');
   const [description, setDescription] = useState(note?.content.description || '');
-  const [email, setEmail] = useState(note?.content.email || '');
-
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const dispatch = useDispatch();
 
+  const openImagePicker = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: false,
+      maxHeight: 2000,
+      maxWidth: 2000,
+    };
+    launchImageLibrary(options, handleResponse);
+  };
+
+  const handleResponse = (response) => {
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.error) {
+      console.log('Image picker error: ', response.error);
+    } else {
+      let imageUri = response.uri || response.assets?.[0]?.uri;
+      console.log('imageUri: ', imageUri);
+      setSelectedImage(imageUri);
+    }
+  };
+
   const handleSubmit = () => {
-    if (!title || !description || !email) {
+    console.log('selected image: ', selectedImage);
+    if (!title || !description) {
       Alert.alert('Please fill out all fields.');
       return;
     }
 
-    const content = { 'title':title, 'description': description, 'email':email };
-    const editContent = {'id': note?.id, 'content': content};
+    if (!isValid) {
+      Alert.alert('Please enter a valid email address.');
+      return;
+    }
+
+    const content = { title, description, email, selectedImage };
     if (note) {
-      dispatch(editNote( editContent));
+      dispatch(editNote({ id: note?.id, content }));
       Alert.alert('Note Updated');
     } else {
-      console.log('added new content: ', content);
       dispatch(addNote(content));
       Alert.alert('Note Added');
     }
@@ -32,18 +60,21 @@ const NoteForm = ({ note }) => {
 
   return (
     <View style={styles.container}>
+      <Text>Email: </Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, !isValid && styles.invalidInput]}
         placeholder="Email"
-        defaultValue={email}
         onChangeText={setEmail}
+        defaultValue={email}
       />
+      <Text>Title: </Text>
       <TextInput
         style={styles.input}
         placeholder="Title"
         defaultValue={title}
         onChangeText={setTitle}
       />
+      <Text>Description: </Text>
       <TextInput
         style={styles.input}
         placeholder="Description"
@@ -51,10 +82,21 @@ const NoteForm = ({ note }) => {
         onChangeText={setDescription}
         multiline
         numberOfLines={4}
-      />
+      />      
+      <Text>Image: </Text>
+      <View style={{ marginBottom: 10 }}>
+        <Button title="Choose from Device" onPress={openImagePicker} />
+      </View>
       <TouchableOpacity onPress={handleSubmit} style={styles.noteSubmitButton}>
         <Text>Submit</Text>
       </TouchableOpacity>
+      {selectedImage && (
+        <Image
+          source={{ uri: selectedImage }}
+          style={{ flex: 1 }}
+          resizeMode="contain"
+        />
+      )}
     </View>
   );
 };
@@ -64,11 +106,15 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   input: {
+    marginTop: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 8,
     borderRadius: 4,
     marginBottom: 12,
+  },
+  invalidInput: {
+    borderColor: 'red',
   },
   noteSubmitButton: {
     alignItems: 'center',
