@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Alert, Text, Button, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { addNote, editNote } from '../redux/noteSlice';
-import useEmailValidation from '../hooks/useEmailValidation'; // Import the custom hook
+import useEmailValidation from '../hooks/useEmailValidation'; 
 import { launchImageLibrary as _launchImageLibrary } from 'react-native-image-picker';
 let launchImageLibrary = _launchImageLibrary;
 

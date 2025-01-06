@@ -9,13 +9,13 @@ export const noteSlice = createSlice({
     addNote: {
       reducer: (state, action) => {
         console.log("action add note: ", action);
-        state.push(action.payload); // Add the new note to the state
+        state.push(action.payload); 
       },
       prepare: (content) => {
         return {
           payload: {
-            id: nanoid(), // Generate a unique ID
-            content: content, // Add the content object, including image
+            id: nanoid(), 
+            content: content, 
           },
         };
       },
@@ -24,7 +24,7 @@ export const noteSlice = createSlice({
       reducer: (state, action) => {
         console.log("edit slice", state);
         const { id, content } = action.payload;
-        const note = state.find((n) => n.id === id); // Find the note by id
+        const note = state.find((n) => n.id === id); 
         console.log("found note: ", note);
         if (note) {
           console.log("edit slice payload content: ", content.title);
@@ -32,14 +32,14 @@ export const noteSlice = createSlice({
           note.content.title = content.title || note.content.title;
           note.content.description = content.description || note.content.description;
           note.content.email = content.email || note.content.email;
-          note.content.image = content.image || note.content.image; // Update the image
+          note.content.image = content.image || note.content.image; 
         }
       },
     },
     removeNote: {
       reducer: (state, action) => {
         const id = action.payload;
-        return state.filter((n) => n.id !== id); // Return a new state excluding the note with the given id
+        return state.filter((n) => n.id !== id); 
       },
     },
   },

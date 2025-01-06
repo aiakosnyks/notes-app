@@ -9,7 +9,7 @@ const useEmailValidation = () => {
   const [isValid, setIsValid] = useState(true);
 
   const validateEmail = (value) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex pattern
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
     setIsValid(emailRegex.test(value));
   };
 
