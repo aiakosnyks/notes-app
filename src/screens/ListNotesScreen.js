@@ -8,14 +8,13 @@ const ListNotesScreen = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      {/* Add Note Button */}
+
       <TouchableOpacity
         onPress={() => navigation.navigate('Add')}
         style={styles.addButton}>
         <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
 
-      {/* Notes List */}
       <FlatList
         data={notes}
         keyExtractor={(item) => item.id.toString()}
@@ -24,7 +23,7 @@ const ListNotesScreen = ({ navigation }) => {
         )}
         contentContainerStyle={[
           styles.listContainer,
-          notes.length === 0 && styles.emptyListContainer, // Handle empty list
+          notes.length === 0 && styles.emptyListContainer, 
         ]}
         ListEmptyComponent={() => (
           <Text style={styles.emptyMessage}>No notes available. Add one!</Text>
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 20,
-    backgroundColor: '#F9F9F9', // Light background for better aesthetics
+    backgroundColor: '#F9F9F9', 
   },
   addButton: {
     flexDirection: 'row',

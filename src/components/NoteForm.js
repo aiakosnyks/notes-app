@@ -27,14 +27,15 @@ const NoteForm = ({ note }) => {
   const handleResponse = (response) => {
     if (response.didCancel) {
       console.log('User cancelled image picker');
-    } else if (response.error) {
-      console.log('Image picker error: ', response.error);
-    } else {
-      let imageUri = response.uri || response.assets?.[0]?.uri;
-      console.log('imageUri: ', imageUri);
+    } else if (response.errorCode) {
+      console.log('Image picker error: ', response.errorCode);
+    } else if (response.assets && response.assets.length > 0) {
+      const imageUri = response.assets[0].uri;
       setSelectedImage(imageUri);
+      console.log('Selected Image URI:', imageUri);
     }
   };
+  
 
   const handleSubmit = () => {
     console.log('selected image: ', selectedImage);
@@ -48,7 +49,7 @@ const NoteForm = ({ note }) => {
       return;
     }
 
-    const content = { title, description, email, selectedImage };
+    const content = { title, description, email, image: selectedImage };
     if (note) {
       dispatch(editNote({ id: note?.id, content }));
       Alert.alert('Note Updated');

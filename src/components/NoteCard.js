@@ -1,23 +1,23 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
-import { Svg, Path } from 'react-native-svg';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native';
 import { removeNote } from '../redux/noteSlice';
 import { useDispatch } from 'react-redux';
 
-const NoteCard = ({ note, navigation, setEditing }) => {
+const NoteCard = ({ note, navigation }) => {
   const dispatch = useDispatch();
-
+  const [showDetail, setShowDetail] = useState(false);
+  useEffect(() => {
+    console.log('showDetail updated:', showDetail);
+  }, [showDetail]);
   return (
     <View style={styles.noteContainer}>
       <View style={styles.noteHeader}>
         <Text style={styles.noteTitleText}>{note.content.title}</Text>
         <View style={styles.buttonContainer}>
-          {/* Edit Button */}
           <TouchableOpacity onPress={ () => navigation.navigate('Edit', { note: note }) } style={styles.noteEditButton}>
           <Text>Edit</Text>
           </TouchableOpacity>
 
-          {/* Delete Button */}
           <TouchableOpacity onPress={() => dispatch(removeNote(note.id))} style={styles.noteDeleteButton}>
           <Text>Erase</Text>
           </TouchableOpacity>
@@ -27,9 +27,24 @@ const NoteCard = ({ note, navigation, setEditing }) => {
       <Text style={styles.emailText}>{note.content.email}</Text>
       <Text style={styles.descriptionText}>{note.content.description}</Text>
 
-      {/* Detail Button */}
+      {showDetail && (
+      <View style={styles.noteImage}> 
+        <Image
+          source={{
+            uri: note.content.image || 'https://via.placeholder.com/200',
+          }}
+          style={{ width: 200, height: 200 }} 
+          resizeMode="contain"
+        />
+      </View>
+      )}
+
       <View style={{ alignItems: 'center', marginTop: 10 }}>
-        <TouchableOpacity style={styles.noteDetailButton}>
+        <TouchableOpacity o  onPress={() => {
+          setShowDetail((prev) => !prev);
+          console.log('showDetail:', !showDetail);
+        }}
+        style={styles.noteDetailButton}>
         <Text>Details</Text>
         </TouchableOpacity>
       </View>
@@ -38,12 +53,19 @@ const NoteCard = ({ note, navigation, setEditing }) => {
 };
 
 const styles = StyleSheet.create({
+  noteImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity: 1,
+    resizeMode: 'contain',
+    backgroundColor: 'transparent', // Görünür arka plan etkilenmez
+ 
+  },
   noteContainer: {
     padding: 10,
     margin: 20,
     borderRadius: 15,
     backgroundColor: '#D3F17F',
-    opacity: 0.6,
     height: 'auto',
     width: 350,
     marginBottom: 20,
