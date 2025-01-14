@@ -6,9 +6,11 @@ import { useDispatch } from 'react-redux';
 const NoteCard = ({ note, navigation }) => {
   const dispatch = useDispatch();
   const [showDetail, setShowDetail] = useState(false);
+
   useEffect(() => {
     console.log('showDetail updated:', showDetail);
   }, [showDetail]);
+
   return (
     <View style={styles.noteContainer}>
       <View style={styles.noteHeader}>
@@ -40,7 +42,7 @@ const NoteCard = ({ note, navigation }) => {
       )}
 
       <View style={{ alignItems: 'center', marginTop: 10 }}>
-        <TouchableOpacity o  onPress={() => {
+        <TouchableOpacity onPress={() => {
           setShowDetail((prev) => !prev);
           console.log('showDetail:', !showDetail);
         }}

@@ -7,12 +7,14 @@ import { launchImageLibrary as _launchImageLibrary } from 'react-native-image-pi
 let launchImageLibrary = _launchImageLibrary;
 
 const NoteForm = ({ note }) => {
-  const { email, setEmail, isValid } = useEmailValidation(note?.content?.email || '');
-  const [title, setTitle] = useState(note?.content.title || '');
-  const [description, setDescription] = useState(note?.content.description || '');
+  const { email, setEmail, isValid } = useEmailValidation({emailValue: note?.content?.email || ''});
+  const [title, setTitle] = useState(note?.content?.title || '');
+  const [description, setDescription] = useState(note?.content?.description || '');
   const [selectedImage, setSelectedImage] = useState(null);
 
   const dispatch = useDispatch();
+
+  console.log(note?.content?.email);
 
   const openImagePicker = () => {
     const options = {

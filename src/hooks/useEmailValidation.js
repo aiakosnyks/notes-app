@@ -4,8 +4,8 @@ import { useState } from 'react';
  * Custom hook for email validation
  * @returns {Object} - email, setEmail, isValid, validateEmail
  */
-const useEmailValidation = () => {
-  const [email, setEmail] = useState('');
+const useEmailValidation = ({emailValue}) => {
+  const [email, setEmail] = useState(emailValue);
   const [isValid, setIsValid] = useState(true);
 
   const validateEmail = (value) => {
